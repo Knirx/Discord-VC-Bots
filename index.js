@@ -1,5 +1,3 @@
-// requirements: discord.js-selfbot-v13, discordjs/voice, axios
-
 const { fork } = require('child_process');
 const fs = require("fs")
 const readline = require("readline")
