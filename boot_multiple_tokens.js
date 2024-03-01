@@ -30,31 +30,12 @@ async function read_bottom_line_txt(filePath) {
     return lines_array
 }
 
-async function changeStatus(status_text, status, headers) {
-    try {
-        await axios.patch(
-            "https://discord.com/api/v8/users/@me/settings", { status: status, custom_status: { text: status_text } }, { headers: headers }
-          );
-          
-        await sleep(1000);
-    } catch (error) {
-        console.log(error)
-        }
-}
-
 async function boot_all_tokens () {
     const bot_status = ["idle", "online", "dnd", "invisible"];
     const bot = new Client();
     bot.login(token_2);
     bot.on('ready', async () => {
     console.log(`Bot is online as ${bot.user.tag}`)
-    const headers = {
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: token_2,
-        }
-        }
-    await changeStatus(get_random_item_array(await read_bottom_line_txt("statuses.txt")), get_random_item_array(bot_status), headers.headers) // statuses file path
     await voiceChannelBots(bot.channels.cache.get(voice_channel_id))
       });
 }
@@ -69,7 +50,5 @@ async function voiceChannelBots(channel) {
       });
   }
 }
-while (true) {
-    boot_all_tokens()
-    sleep(86390000)
-}
+
+boot_all_tokens()
