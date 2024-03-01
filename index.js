@@ -17,7 +17,7 @@ async function read_txt_file(filePath) {
 }
 
 async function start_the_tokens() {
-    const voice_channel_tokens_array = await read_txt_file("./src/util/vc_tokens.txt")
+    const voice_channel_tokens_array = await read_txt_file("./vc_tokens.txt")
 
     for (const token of voice_channel_tokens_array) {
         const child = fork('boot_multiple_tokens.js', [token]);
